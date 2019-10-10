@@ -1,27 +1,18 @@
 
-// var passwordButton = document.getElementById ()
+
 
 // password values
 
 var special = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 var caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lower = "abcdefghijklmnopqrstuvwxyz";
-var number = "1234567890"
+var number = "1234567890";
+var yourPass = document.getElementById("yourPW").value;
 
-
-
-function createPass(len, characters) {
+// when create password button is clicked do this function
+submit.addEventListener("click", function(e){
     var lengthPass = prompt("How many character password do you want, 8-128");
-    var pwd = "";
-    for (let i = 0; i < len; i++) {
-        // takes characters at random index however many charcters user chooses and adds to pwd
-        pwd += characters.charAt(Math.floor(Math.random() * characters.length));
-        
-    }
-
     
-
-
     // input validation
     if (lengthPass < 8 || lengthPass > 128) {
         alert("Choose between 8 and 128, jerky");
@@ -29,40 +20,36 @@ function createPass(len, characters) {
         // prompts for user input
         var specialResult = confirm("Would you like special characters in your password?");
         var capsResult = confirm("Would you like capital letters in your password?");
-        var lowerResult = confirm("Would you like lowercase letters in your password?");
-        var numberResult = confirm("Would you like capital letters in your password?");
-
-        // if (specialResult) {
-        //     for (var)
-        // }
-
-        return pwd;
+        // var lowerResult = confirm("Would you like lowercase letters in your password?");
+        var numberResult = confirm("Would you like numbers in your password?");
     }
-
     
+    
+    // if user selects no for all character options there will be all lowercase letters
+    var characters = lower;
+        // all below: what to do when if confirms are true, written in if shorthand to try and simplify.  Concatenate characters that are true to character variable
+    specialResult ? characters += special : "";
+    capsResult ? characters += caps : "";
+    numberResult ? characters += number : "";
+    
+    // password for the output box is the length of password selected with whatever characters selected by user, selected at random as a result createPass function below
+    yourPass = createPass(lengthPass.value, characters);
+    console.log(yourPW);
+});
 
-        // password creation
-
-
-
-        //     for (i = 0; i < lengthPass.length; i++){
-        //  //need a way to cycle through each set of values based on what a user chooses 
-        //     }
-        // }
-
-    //     // set password length
-    //     var length = document.getElementById(from prompt)
-    // }
-
-
-
-        // // add password to display
-        // document.getElementbyId("display").value = password;
-
-
-        // check if length is valid
-
-        // use .textContent to create password
-        // then document.body.appendChild (var)
-
-    };
+function createPass(len, characters) {
+   
+    var pwd = "";
+    for (var i = 0; i < len; i++) {
+        // takes characters at random index however many charcters user chooses and adds to pwd
+        pwd += characters.charAt(Math.floor(Math.random() * characters.length));  
+    }
+// pwd returned from for above to var pwd
+        return pwd;
+        
+}
+    
+    console.log(yourPass);
+    console.log(yourPass.value);
+    console.log(createPass);
+    
