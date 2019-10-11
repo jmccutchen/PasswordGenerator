@@ -23,10 +23,15 @@ submit.addEventListener("click", function(e){
         var capsResult = confirm("Would you like capital letters in your password?");
         // var lowerResult = confirm("Would you like lowercase letters in your password?");
         var numberResult = confirm("Would you like numbers in your password?");
-    }
+    } 
+    // if user selects no for all character options there will be an alert and will need to start over
+    if ((specialResult == false) && (capsResult == false) && (numberResult == false)){
+        alert("Are you trying to get hacked!? Pick at least one type of character")
+    } else {
     
     
-    // if user selects no for all character options there will be all lowercase letters
+    
+    
     var characters = lower;
     var len = lengthPass;
         // all below: what to do when if confirms are true, written in if shorthand to try and simplify.  Concatenate characters that are true to character variable
@@ -37,7 +42,8 @@ submit.addEventListener("click", function(e){
     // password for the output box is the length of password selected with whatever characters selected by user, selected at random as a result createPass function below
    var yourPass = createPass(lengthPass, characters);   
    document.querySelector("#yourPW").value = yourPass; 
-});
+}});
+
 
 function createPass(lengthPass, characters) {
    
@@ -50,6 +56,13 @@ function createPass(lengthPass, characters) {
 // pwd returned from for above to var pwd
 return pwd;  
   
+};
+
+// function to copy password- used onlick option with button in HTML
+function copyPass(){
+    document.querySelector("#yourPW").select();
+    document.execCommand("Copy");
+    alert("That thang is copied.");
 };
 
 
