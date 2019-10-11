@@ -7,10 +7,11 @@ var special = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 var caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lower = "abcdefghijklmnopqrstuvwxyz";
 var number = "1234567890";
-var yourPass = document.getElementById("yourPW").value;
+// var yourPass = document.getElementById("yourPW").value;
 
 // when create password button is clicked do this function
 submit.addEventListener("click", function(e){
+    e.preventDefault();
     var lengthPass = prompt("How many character password do you want, 8-128");
     
     // input validation
@@ -27,29 +28,32 @@ submit.addEventListener("click", function(e){
     
     // if user selects no for all character options there will be all lowercase letters
     var characters = lower;
+    var len = lengthPass;
         // all below: what to do when if confirms are true, written in if shorthand to try and simplify.  Concatenate characters that are true to character variable
     specialResult ? characters += special : "";
     capsResult ? characters += caps : "";
     numberResult ? characters += number : "";
     
     // password for the output box is the length of password selected with whatever characters selected by user, selected at random as a result createPass function below
-    yourPass = createPass(lengthPass.value, characters);
-    console.log(yourPW);
+   var yourPass = createPass(lengthPass, characters);   
+   document.querySelector("#yourPW").value = yourPass; 
 });
 
-function createPass(len, characters) {
+function createPass(lengthPass, characters) {
    
     var pwd = "";
-    for (var i = 0; i < len; i++) {
+    for (var i = 0; i < lengthPass; i++) {
         // takes characters at random index however many charcters user chooses and adds to pwd
-        pwd += characters.charAt(Math.floor(Math.random() * characters.length));  
+        pwd += characters.charAt(Math.floor(Math.random() * characters.length)); 
+        console.log(pwd); 
     }
 // pwd returned from for above to var pwd
-        return pwd;
-        
-}
-    
-    console.log(yourPass);
-    console.log(yourPass.value);
-    console.log(createPass);
+return pwd;  
+  
+};
+
+
+  
+
+
     
